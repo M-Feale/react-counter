@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import "./App.css";
 
-const Counter = () => {
-	const [count, setCount] = useState(0);
+const Counter = ({ initialCount }) => {
+	const [count, setCount] = useState(initialCount);
 
 	const increment = () => {
 		setCount((prev) => prev + 1);
@@ -25,11 +25,12 @@ const Counter = () => {
 		<div className="card">
 			<h1>Simple Counter</h1>
 			<h2>Goal: Learn how to test in React with Jest</h2>
-            <p>The count is {count}</p>
-            <button onClick={increment}>Increment</button>
-            <button onClick={decrement}>Decrement</button>
-            <button onClick={restart}>Restart</button>
-            <button onClick={switchSigns}>Switch Signs</button>
+            <h3>The count is: </h3>
+			<p data-testid="count">{count}</p>
+			<button onClick={increment}>Increment</button>
+			<button onClick={decrement}>Decrement</button>
+			<button onClick={restart}>Restart</button>
+			<button onClick={switchSigns}>Switch Signs</button>
 		</div>
 	);
 };
