@@ -19,18 +19,24 @@ describe(Counter, () => {
         const { getByTestId, getByRole } = render(<Counter initialCount={0} />);
 		const incrementBtn = getByRole("button", { name: "Increment" });
         const countValue1 = Number(getByTestId("count").textContent); 
-		expect(countValue1).toEqual(0);
+		expect(countValue1).toStrictEqual(0);
         fireEvent.click(incrementBtn);
 		const countValue2 = Number(getByTestId("count").textContent); 
-		expect(countValue2).toEqual(1);
+		expect(countValue2).toStrictEqual(1);
 	});
     it("count should decrement by 1 if the decrement button is clicked", () => {
         const {getByTestId, getByRole} = render(<Counter initialCount={0} />)
         const decrementBtn = getByRole("button", {name: "Decrement"})
         // Version to write everything in one line instead of having a transition variable
-        expect(Number(getByTestId("count").textContent)).toEqual(0)
+        expect(Number(getByTestId("count").textContent)).toStrictEqual(0)
         fireEvent.click(decrementBtn)
-        expect(Number(getByTestId("count").textContent)).toEqual(-1)
+        expect(Number(getByTestId("count").textContent)).toStrictEqual(-1)
     })
-
+    it("count should become 0 if the restart button is clicked", () => {
+        const {getByTestId, getByRole} = render( <Counter initialCount={50} /> )
+        const restartBtn = getByRole("button", {name: "Restart"})
+        expect(Number(getByTestId("count").textContent)).toStrictEqual(50)
+        fireEvent.click(restartBtn)
+        expect(Number(getByTestId("count").textContent)).toStrictEqual(0)
+    })
 });
