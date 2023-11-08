@@ -39,4 +39,11 @@ describe(Counter, () => {
         fireEvent.click(restartBtn)
         expect(Number(getByTestId("count").textContent)).toStrictEqual(0)
     })
+    it("count should change signs to the opposite sign when the switch signs button is clicked", () => {
+        const {getByTestId, getByRole} = render(<Counter initialCount={50} />)
+        const switchSignsBtn = getByRole("button", {name: "Switch Signs"})
+        expect(Number(getByTestId("count").textContent)).toStrictEqual(50)
+        fireEvent.click(switchSignsBtn)
+        expect(Number(getByTestId("count").textContent)).toStrictEqual(-50)
+    })
 });
